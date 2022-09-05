@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ReduxHelper": {
+      "commandName": "Project",
+      "commandLineArgs": "-n Test",
+      "workingDirectory": "C:\\Users\\Patrizio\\source\\repos\\CardStudyBlazor\\Domain\\Store\\Features\\CardStudy\\"
+    }
+  }
+}
