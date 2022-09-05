@@ -1,0 +1,33 @@
+﻿using Fluxor;
+using {namespace}.{actionsFolder}.{actionName};
+using {stateNamespace};
+
+namespace {namespace}.{reducersFolder}
+{
+    public class {actionName}ActionsReducer
+    {
+        [ReducerMethod(typeof({actionName}Action))]
+        public static {stateName} Reduce{actionName}Action({stateName} state) =>
+            state with
+        {
+            IsLoading = true,
+            CurrentErrorMessage = null,
+        };
+
+        [ReducerMethod]
+        public static {stateName} Reduce{actionName}SuccessAction({stateName} state, {actionName}SuccessAction action) =>
+            state with
+        {
+            IsLoading = false,
+            CurrentErrorMessage = null,
+        };
+
+        [ReducerMethod]
+        public static {stateName} Reduce{actionName}FailureAction({stateName} state, {actionName}FailureAction action) =>
+            state with
+        {
+            IsLoading = false,
+            CurrentErrorMessage = action.ErrorMessage,
+        };
+    }
+}

@@ -11,20 +11,21 @@ namespace ReduxHelper.Actions
 {
     public class CreateActionBoilerplateAction : IAction
     {
+        public const string TemplateExtension = ".templ";
         public const string CsExtension = ".cs";
         public const string ActionsFolder = "Actions";
-        public const string ActionFile = "Action.tmp";
+        public const string ActionFile = $"Action{TemplateExtension}";
         public const string ActionTargetFile = "Action.cs";
-        public const string ActionFailureFile = "ActionFailure.tmp";
+        public const string ActionFailureFile = $"ActionFailure{TemplateExtension}";
         public const string ActionFailureTargetFile = "ActionFailure.cs";
-        public const string ActionSuccessFile = "ActionSuccess.tmp";
+        public const string ActionSuccessFile = $"ActionSuccess{TemplateExtension}";
         public const string ActionSuccessTargetFile = "ActionSuccess.cs";
         public const string EffectsFolder = "Effects";
         public const string Effect = "Effect";
-        public const string EffectFile = "Effect.tmp";
+        public const string EffectFile = $"Effect{TemplateExtension}";
         public const string EffectTargetFile = "Effect.cs";
         public const string ReducersFolder = "Reducers";
-        public const string ReducerFile = "Reducer.tmp";
+        public const string ReducerFile = $"Reducer{TemplateExtension}";
         public const string ReducerTargetFile = "Reducer.cs";
         public const string SharedFolder = "Shared";
         public const string StateFolder = "State";
@@ -48,11 +49,11 @@ namespace ReduxHelper.Actions
         },
         {
           "actionsFolder",
-          "Actions"
+          ActionsFolder
         },
         {
           "effectsFolder",
-          "Effects"
+          EffectsFolder
         },
         {
           "stateName",
@@ -60,7 +61,7 @@ namespace ReduxHelper.Actions
         },
         {
           "reducersFolder",
-          "Reducers"
+         ReducersFolder
         },
         {
           "sharedNamespace",
@@ -71,11 +72,11 @@ namespace ReduxHelper.Actions
           this.GetStateNamespace(options.PathComputed)
         }
       };
-            FileTemplateFactory.CopyTemplate(this.Name, "Action.tmp", Path.Combine(options.PathComputed, "Actions", options.ActionName, options.ActionName + "Action.cs"), replacements);
-            FileTemplateFactory.CopyTemplate(this.Name, "ActionFailure.tmp", Path.Combine(options.PathComputed, "Actions", options.ActionName, options.ActionName + "ActionFailure.cs"), replacements);
-            FileTemplateFactory.CopyTemplate(this.Name, "ActionSuccess.tmp", Path.Combine(options.PathComputed, "Actions", options.ActionName, options.ActionName + "ActionSuccess.cs"), replacements);
-            FileTemplateFactory.CopyTemplate(this.Name, "Effect.tmp", Path.Combine(options.PathComputed, "Effects", options.ActionName + "Effect.cs"), replacements);
-            FileTemplateFactory.CopyTemplate(this.Name, "Reducer.tmp", Path.Combine(options.PathComputed, "Reducers", options.ActionName + "Reducer.cs"), replacements);
+            FileTemplateFactory.CopyTemplate(this.Name, ActionFile, Path.Combine(options.PathComputed, "Actions", options.ActionName, options.ActionName + ActionTargetFile), replacements);
+            FileTemplateFactory.CopyTemplate(this.Name, ActionFailureFile, Path.Combine(options.PathComputed, "Actions", options.ActionName, options.ActionName + ActionFailureTargetFile), replacements);
+            FileTemplateFactory.CopyTemplate(this.Name, ActionSuccessFile, Path.Combine(options.PathComputed, "Actions", options.ActionName, options.ActionName + ActionSuccessTargetFile), replacements);
+            FileTemplateFactory.CopyTemplate(this.Name, EffectFile, Path.Combine(options.PathComputed, "Effects", options.ActionName + EffectTargetFile), replacements);
+            FileTemplateFactory.CopyTemplate(this.Name, ReducerFile, Path.Combine(options.PathComputed, "Reducers", options.ActionName + ReducerTargetFile), replacements);
             await Task.CompletedTask;
         }
 
@@ -86,13 +87,13 @@ namespace ReduxHelper.Actions
             DirectoryInfo directoryInfo = new DirectoryInfo(path);
             for (int index = 0; index < parents; ++index)
             {
-                if(directoryInfo.Parent == null)
+                if (directoryInfo.Parent == null)
                 {
                     break;
                 }
                 directoryInfo = directoryInfo.Parent;
             }
-                
+
             return this.GetNamespace(new DirectoryInfo(Path.Combine(directoryInfo.FullName, subFolder)).FullName);
         }
 
@@ -120,7 +121,7 @@ namespace ReduxHelper.Actions
             if (subFolders == null)
                 subFolders = new List<string>();
             subFolders.Add(directoryInfo.Name);
-            if(directoryInfo.Parent == null)
+            if (directoryInfo.Parent == null)
             {
                 throw new NullReferenceException("parent directory can not be null");
             }

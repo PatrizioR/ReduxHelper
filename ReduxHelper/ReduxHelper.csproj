@@ -17,19 +17,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="Templates\CreateActionBoilerplateAction\Action.tmp">
+		<Content Include="Templates\CreateActionBoilerplateAction\Action.templ">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Templates\CreateActionBoilerplateAction\ActionFailure.tmp">
+		<Content Include="Templates\CreateActionBoilerplateAction\ActionFailure.templ">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Templates\CreateActionBoilerplateAction\ActionSuccess.tmp">
+		<Content Include="Templates\CreateActionBoilerplateAction\ActionSuccess.templ">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Templates\CreateActionBoilerplateAction\Effect.tmp">
+		<Content Include="Templates\CreateActionBoilerplateAction\Effect.templ">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Templates\CreateActionBoilerplateAction\Reducer.tmp">
+		<Content Include="Templates\CreateActionBoilerplateAction\Reducer.templ">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
