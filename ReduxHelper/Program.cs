@@ -10,22 +10,21 @@ CreateLogger();
 ParserResultExtensions.WithNotParsed(
     ParserResultExtensions.WithParsed(
         Parser.Default.ParseArguments<ArgumentOptions>(
-            (IEnumerable<string>)args),
+            args ),
         (o =>
         {
-            int action = (int)o.Action;
-            (new CreateActionBoilerplateAction() ?? throw new NullReferenceException("No action found")).ExecuteAsync(o).Wait(60000);
-        })),
-    (errors => {
-        foreach(var error in errors)
-        {
-            Log.Error($"{error.Tag.ToString()}: {error.ToString()}");
+            (new CreateActionBoilerplateAction() ?? throw new NullReferenceException( "No action found" )).ExecuteAsync( o ).Wait( 60000 );
+        }) ),
+    (errors =>
+    {
+        foreach ( var error in errors ) {
+            Log.Error( $"{error.Tag}: {error}" );
         }
     })
     );
 
 static void CreateLogger()
 {
-    Log.Logger = ConfigurationLoggerConfigurationExtensions.Configuration(new LoggerConfiguration().ReadFrom, (IConfiguration)JsonConfigurationExtensions.AddJsonFile(new ConfigurationBuilder(), "appsettings.json").Build(), null).CreateLogger();
-    Log.Logger.Debug("Logger created");
+    Log.Logger = new LoggerConfiguration().ReadFrom.Configuration( new ConfigurationBuilder().AddJsonFile( "appsettings.json" ).Build() ).CreateLogger();
+    Log.Logger.Debug( "Logger created" );
 }

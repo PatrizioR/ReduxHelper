@@ -9,25 +9,25 @@ namespace {namespace}.{reducersFolder}
         [ReducerMethod(typeof({actionName}Action))]
         public static {stateName} Reduce{actionName}Action({stateName} state) =>
             state with
-        {
-            IsLoading = true,
-            CurrentErrorMessage = null,
-        };
+            {
+                IsLoading = true,
+                CurrentErrorMessage = null,
+            };
 
         [ReducerMethod]
         public static {stateName} Reduce{actionName}SuccessAction({stateName} state, {actionName}SuccessAction action) =>
             state with
-        {
-            IsLoading = false,
-            CurrentErrorMessage = null,
-        };
+            {
+                IsLoading = false,
+                CurrentErrorMessage = null,
+            };
 
         [ReducerMethod]
         public static {stateName} Reduce{actionName}FailureAction({stateName} state, {actionName}FailureAction action) =>
             state with
-        {
-            IsLoading = false,
-            CurrentErrorMessage = action.ErrorMessage,
-        };
+            {
+                IsLoading = false,
+                CurrentErrorMessage = action.ErrorMessage,
+            };
     }
 }
